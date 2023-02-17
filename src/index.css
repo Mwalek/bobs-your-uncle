@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  background-color: #c8bcac;
+  color: #333;
+  font-family: "Lato", sans-serif;
+}
+
+main {
+  max-width: 90%;
+  margin: 3em auto;
+  background-color: #fff;
+  padding: 1em;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+:global(.center-text) {
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 1em;
+  margin-right: 1em;
+}
+
+nav ul li:last-child {
+  margin-right: none;
+}
