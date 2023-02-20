@@ -10,6 +10,7 @@
     <title>Bobs your uncle</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -18,18 +19,22 @@
         <a href="#">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
-    <h1 id="site-title" class="site_title">
-      <span><img id="logo" alt="" /></span> Bob's your uncle
-    </h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-    <main>
+    <header>
+      <h1 id="site-title" class="site_title">
+        <span><img id="logo" alt="" /></span> <a href="#">Loading ...</a>
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
       <p>Content will appear here ...</p>
     </main>
-    <script src="./dist/bundle.js" async defer></script>
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <p id="site-description">Built by Mwale with JavaScript and WordPress</p>
+    </footer>
   </body>
 </html>
