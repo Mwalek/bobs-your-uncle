@@ -21,7 +21,7 @@ export function init() {
     })
     .catch((error) => {
       console.error(error);
-      setState("siteName", `Oops, something went wrong: ${error.message}`);
+      setState("siteName", `Oops, ${error.message.toLowerCase()}!`);
       setState(
         "siteDescription",
         "Built by Mwale with JavaScript and WordPress"

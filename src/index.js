@@ -8,6 +8,7 @@ import * as config from "./config";
 import { getEl, createEl, removeEl, isRendered } from "./helpers";
 import { state, setState } from "./state";
 
+import { init as Authentication } from "./components/Authentication";
 import { init as Header } from "./components/Header";
 import { init as Posts } from "./components/Posts";
 
@@ -20,6 +21,7 @@ logoEl.src = logo;
 (function init() {
   console.table(state);
   console.log(config.siteDescription);
+  Authentication();
   Header();
   Posts();
 })();

@@ -5,7 +5,8 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-main {
+main,
+aside {
   max-width: 90%;
   margin: 3em auto;
   background-color: #fff;
@@ -41,4 +42,9 @@ footer {
   left: 0;
   right: 0;
   text-align: center;
+}
+
+:global(.hidden),
+:global(li:empty) {
+  display: none;
 }

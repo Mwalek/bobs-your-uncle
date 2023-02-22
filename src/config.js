@@ -8,3 +8,8 @@ export const siteDescription = "site-description";
 
 // UI Component IDs
 export const backBtn = "back-to-post";
+export const loginBtn = "login-button";
+export const logoutBtn = "logout-button";
+export const loginForm = "login-form";
+export const username = "login-username";
+export const password = "login-password";
