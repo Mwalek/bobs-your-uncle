@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  min-height: 100vh;
   background-color: #c8bcac;
   color: #333;
   font-family: "Lato", sans-serif;
@@ -37,10 +38,10 @@ nav ul li:last-child {
 }
 
 footer {
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
   text-align: center;
 }
 

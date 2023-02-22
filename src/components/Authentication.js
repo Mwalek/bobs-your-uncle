@@ -6,8 +6,15 @@ import { init as Posts } from "./Posts";
 import { render as LoginForm } from "./LoginForm";
 
 import { state, setState } from "../state";
-import { getEl } from "../helpers";
-import { loginForm, loginBtn, logoutBtn } from "../config";
+import { getEl, removeEl } from "../helpers";
+import {
+  loginForm,
+  loginBtn,
+  loginSubmitBtn,
+  logoutBtn,
+  username,
+  password,
+} from "../config";
 
 export function init() {
   if (Cookies.get(state.token) === undefined) {
@@ -25,11 +32,13 @@ export function login() {
   setState("loggedIn", true);
   getEl(loginBtn).classList.add("hidden");
   getEl(logoutBtn).classList.remove("hidden");
+  removeEl(loginForm);
   Posts();
 }
 
 export function logout() {
   setState("loggedIn", false);
+  LoginForm();
   getEl(logoutBtn).classList.add("hidden");
   getEl(loginBtn).classList.remove("hidden");
   Posts();
@@ -39,12 +48,12 @@ export function initLogin() {
   const prevLogin = getEl(loginBtn);
   const newLogin = prevLogin.cloneNode(true);
   prevLogin.parentNode.replaceChild(newLogin, prevLogin);
-  getEl(loginBtn).addEventListener("click", (event) => {
+  getEl(loginSubmitBtn).addEventListener("click", (event) => {
     event.preventDefault();
 
     const creds = {
-      username: "",
-      password: "",
+      username: getEl(username).value,
+      password: getEl(password).value,
     };
 
     axios({
@@ -64,7 +73,7 @@ export function initLogin() {
           init();
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error.message));
   });
 }
 
