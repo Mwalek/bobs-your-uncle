@@ -14,3 +14,4 @@ export const logoutBtn = "logout-button";
 export const loginForm = "login-form";
 export const username = "login-username";
 export const password = "login-password";
+export const logoutForm = "logout-form";

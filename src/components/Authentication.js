@@ -4,11 +4,13 @@ import formurlencoded from "form-urlencoded";
 
 import { init as Posts } from "./Posts";
 import { render as LoginForm } from "./LoginForm";
+import { render as LogoutForm } from "./LogoutForm";
 
 import { state, setState } from "../state";
 import { getEl, removeEl } from "../helpers";
 import {
   loginForm,
+  logoutForm,
   loginBtn,
   loginSubmitBtn,
   logoutBtn,
@@ -33,12 +35,14 @@ export function login() {
   getEl(loginBtn).classList.add("hidden");
   getEl(logoutBtn).classList.remove("hidden");
   removeEl(loginForm);
+  LogoutForm();
   Posts();
 }
 
 export function logout() {
   setState("loggedIn", false);
   LoginForm();
+  removeEl(logoutForm);
   getEl(logoutBtn).classList.add("hidden");
   getEl(loginBtn).classList.remove("hidden");
   Posts();
@@ -81,7 +85,7 @@ export function initLogout() {
   const prevLogout = getEl(logoutBtn);
   const newLogout = prevLogout.cloneNode(true);
   prevLogout.parentNode.replaceChild(newLogout, prevLogout);
-  getEl(logoutBtn).addEventListener("click", (event) => {
+  getEl(logoutForm).addEventListener("submit", (event) => {
     event.preventDefault();
     Cookies.remove(state.token, { secure: true });
     init();
