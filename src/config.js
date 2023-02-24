@@ -15,3 +15,8 @@ export const loginForm = "login-form";
 export const username = "login-username";
 export const password = "login-password";
 export const logoutForm = "logout-form";
+
+// Editor IDs
+export const editor = "add-post-form";
+export const editorTitle = "title-editor";
+export const editorContent = "content-editor";

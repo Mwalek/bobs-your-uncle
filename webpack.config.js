@@ -21,10 +21,7 @@ module.exports = {
     rules: [
       {
         test: /\.(css)$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader", options: { modules: true } },
-        ],
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
       },
       {
         test: /.s[ac]ss$/,
@@ -35,8 +32,12 @@ module.exports = {
         ],
       },
       {
-        test: /.(png|jpeg|gif|svg)$/,
+        test: /.(png|jpeg|gif)$/,
         type: "asset/resource",
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader",
       },
       {
         test: /.(ttf|eot|woff|woff2)$/,

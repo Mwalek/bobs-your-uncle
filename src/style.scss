@@ -1,0 +1,4 @@
+:global(.hidden),
+:global(li:empty) {
+  display: none;
+}

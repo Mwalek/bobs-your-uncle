@@ -5,6 +5,7 @@ import formurlencoded from "form-urlencoded";
 import { init as Posts } from "./Posts";
 import { render as LoginForm } from "./LoginForm";
 import { render as LogoutForm } from "./LogoutForm";
+import { render as Editor } from "./Editor";
 
 import { state, setState } from "../state";
 import { getEl, removeEl } from "../helpers";
@@ -36,6 +37,7 @@ export function login() {
   getEl(logoutBtn).classList.remove("hidden");
   removeEl(loginForm);
   LogoutForm();
+  Editor();
   Posts();
 }
 
