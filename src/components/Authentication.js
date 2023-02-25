@@ -6,10 +6,12 @@ import { init as Posts } from "./Posts";
 import { render as LoginForm } from "./LoginForm";
 import { render as LogoutForm } from "./LogoutForm";
 import { render as Editor } from "./Editor";
+import { render as Notice } from "./Notice";
 
 import { state, setState } from "../state";
 import { getEl, removeEl } from "../helpers";
 import {
+  editor,
   loginForm,
   logoutForm,
   loginBtn,
@@ -36,6 +38,7 @@ export function login() {
   getEl(loginBtn).classList.add("hidden");
   getEl(logoutBtn).classList.remove("hidden");
   removeEl(loginForm);
+  Notice("loggedin");
   LogoutForm();
   Editor();
   Posts();
@@ -43,8 +46,10 @@ export function login() {
 
 export function logout() {
   setState("loggedIn", false);
+  Notice("loggedout");
   LoginForm();
   removeEl(logoutForm);
+  removeEl(editor);
   getEl(logoutBtn).classList.add("hidden");
   getEl(loginBtn).classList.remove("hidden");
   Posts();

@@ -1,6 +1,6 @@
 import { state } from "../state";
 import { getEl, isRendered } from "../helpers";
-// import { save } from "../crud";
+import { save } from "../crud";
 import { primary, main, editor, editorTitle, editorContent } from "../config";
 import Quill from "../index";
 
@@ -34,7 +34,30 @@ export function render() {
   });
 
   // Add listener to save button that calls save
-  getEl(editor).addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
+  getEl(editor).addEventListener("submit", process);
+}
+
+function process(event) {
+  const quillEditor = Quill.find(getEl(editorContent));
+  const post = {
+    title: getEl(editorTitle).value,
+    content: quillEditor.root.innerHTML,
+    status: "publish",
+  };
+  console.log(post);
+
+  event.preventDefault();
+
+  if (!post.title || !post.content) {
+    alert("All fields are required");
+    return;
+  }
+
+  save(post);
+}
+
+export function clear() {
+  getEl(editorTitle).value = "";
+  const quillEditor = Quill.find(getEl(editorContent));
+  quillEditor.root.innerHTML = "";
 }

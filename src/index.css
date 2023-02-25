@@ -9,8 +9,7 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-#primary,
-aside {
+#content {
   max-width: 90%;
   margin: 3em auto;
   background-color: #fff;
@@ -52,4 +51,50 @@ footer {
   padding: 1em;
   margin-bottom: 2em;
   border-bottom: 1px solid #ccc;
+}
+
+.ql-editor {
+  min-height: 8rem;
+}
+
+.delete-post {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#message {
+  border: 1px #ccc solid;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  animation: fadeinout 2s ease-out;
+}
+
+@keyframes fadeinout {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#message.loggedin,
+#message.loggedout,
+#message.saved {
+  border: 1px solid green;
+  background: #acfca4;
+}
+
+#message.required,
+#message.failed,
+#message.deleted {
+  border: 1px solid red;
+  background: #fcd4d4;
+  color: black;
+}
+
+#message.updated {
+  border: 1px solid orange;
+  background: lightyellow;
 }

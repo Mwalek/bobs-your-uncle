@@ -20,3 +20,5 @@ export const logoutForm = "logout-form";
 export const editor = "add-post-form";
 export const editorTitle = "title-editor";
 export const editorContent = "content-editor";
+
+export const message = "message";
