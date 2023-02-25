@@ -30,3 +30,14 @@ export /**
 const isRendered = (el) => {
   return getEl(el) ? true : false;
 };
+
+export /**
+ * Returns text content including HTML entitites
+ *
+ * @param {string} input
+ * @returns
+ */
+function htmlDecode(input) {
+  var doc = new DOMParser().parseFromString(input, "text/html");
+  return doc.documentElement.textContent;
+}

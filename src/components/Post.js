@@ -1,7 +1,9 @@
+import { loadPost } from "./Editor";
 import { render as Posts, clear as clearPosts } from "./Posts";
 
 import { state, setState } from "../state";
 import { getEl, createEl } from "../helpers";
+import { deletePost } from "../crud";
 import { main, backBtn } from "../config";
 
 /**
@@ -26,9 +28,54 @@ export function render() {
     Posts();
   });
 
+  // If logged in, display edit link
+  if (state.loggedIn) {
+    article.append(editLink(state.post));
+    article.append(deleteLink(state.post));
+  }
+
   // Clear the posts from the page
   clearPosts();
 
   // Add the post to the page
   getEl(main).append(article);
+}
+
+/**
+ * Creates an edit link for a post bound to it
+ *
+ * @param {Object} post The post to be edited
+ */
+export function editLink(post) {
+  // Setup the edit link
+  const link = document.createElement("a");
+  link.href = "#edit-post";
+  link.classList.add("edit");
+  link.innerText = "Edit";
+
+  // Add event listener for the post edit link
+  link.addEventListener("click", () => {
+    setState("editorPost", post.id);
+    loadPost();
+  });
+
+  // Return the link element
+  return link;
+}
+
+export function deleteLink(post) {
+  // Setup the delete link
+  const link = document.createElement("a");
+  link.href = "#delete-post";
+  link.classList.add("delete-post");
+  link.innerText = "Delete";
+
+  // Add the event listener to delete the post
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    deletePost(post);
+  });
+
+  // Return the delete link
+  return link;
 }

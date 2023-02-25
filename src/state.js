@@ -7,6 +7,7 @@ const state = {
   siteDescription: "Just another headless site",
   posts: null,
   post: null,
+  editorPost: null,
 };
 /**
  * Handles updating the state

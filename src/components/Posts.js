@@ -3,7 +3,7 @@ import axios from "axios";
 import { getEl, createEl } from "../helpers";
 import { state, setState } from "../state";
 import { main } from "../config";
-import { render as Post } from "./Post";
+import { render as Post, editLink, deleteLink } from "./Post";
 
 export function init(event) {
   if (event) event.preventDefault();
@@ -46,6 +46,12 @@ export function render() {
         // Render single post
         Post();
       });
+
+    // If logged in, display edit link
+    if (state.loggedIn) {
+      article.append(editLink(post));
+      article.append(deleteLink(post));
+    }
 
     // Append the post to the page
     getEl(main).append(article);

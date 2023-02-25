@@ -46,7 +46,7 @@ export function login() {
 
 export function logout() {
   setState("loggedIn", false);
-  Notice("loggedout");
+  // Notice("loggedout");
   LoginForm();
   removeEl(logoutForm);
   removeEl(editor);

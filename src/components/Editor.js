@@ -1,6 +1,8 @@
-import { state } from "../state";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { state, setState } from "../state";
 import { getEl, isRendered } from "../helpers";
-import { save } from "../crud";
+import { save, update } from "../crud";
 import { primary, main, editor, editorTitle, editorContent } from "../config";
 import Quill from "../index";
 
@@ -37,9 +39,30 @@ export function render() {
   getEl(editor).addEventListener("submit", process);
 }
 
+export function loadPost() {
+  const token = Cookies.get(state.token);
+  axios
+    .get(state.restUrl + "wp/v2/posts/" + state.editorPost, {
+      params: {
+        context: "edit",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((response) => {
+      window.scrollTo(0, 50);
+      getEl(editorTitle).value = response.data.title.raw;
+      const contentEditor = Quill.find(getEl(editorContent));
+      contentEditor.root.innerHTML = response.data.content.raw;
+    });
+}
+
 function process(event) {
   const quillEditor = Quill.find(getEl(editorContent));
   const post = {
+    id: state.editorPost,
     title: getEl(editorTitle).value,
     content: quillEditor.root.innerHTML,
     status: "publish",
@@ -52,12 +75,16 @@ function process(event) {
     alert("All fields are required");
     return;
   }
-
-  save(post);
+  if (!state.editorPost) {
+    save(post);
+  } else {
+    update(post);
+  }
 }
 
 export function clear() {
   getEl(editorTitle).value = "";
   const quillEditor = Quill.find(getEl(editorContent));
   quillEditor.root.innerHTML = "";
+  setState("editorPost", null);
 }
